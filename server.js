@@ -1,17 +1,16 @@
 var five = require('johnny-five');
-// var board = new five.Board();
 var config = require('./config');
+var boards = config.boards;
 var osc = require('node-osc');
 
 var client = new osc.Client(config.osc.address, config.osc.port);
 
-// board.on('ready', function () {
-new five.Boards(['A', 'B']).on('ready', function (){
+new five.Boards(getBoardsID()).on('ready', function (){
   var boardIndex = 0;
 
   this.each(function (board){
-      for (var i = 0; i < config.boards[boardIndex].pins.length; i++) {
-        var configPin = config.boards[boardIndex].pins[i];
+      for (var i = 0; i < boards[boardIndex].pins.length; i++) {
+        var configPin = boards[boardIndex].pins[i];
         var pinIndex = (typeof(configPin) === 'string') ? analogPinMap(configPin) : configPin;
         createPin(board, pinIndex);
       }
@@ -20,8 +19,15 @@ new five.Boards(['A', 'B']).on('ready', function (){
   });
 });
 
-function createPin (board, pinIndex){
+function getBoardsID(){
+  var ids = [];
+  for (var i = 0; i < boards.length; i++) {
+    ids.push(boards[i].name);
+  };
+  return ids;
+}
 
+function createPin (board, pinIndex){
   var pin  = new five.Pin(pinIndex);
   pin.mode = 0; // 0 = INPUT
   pin.read(function (value){
