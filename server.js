@@ -12,7 +12,7 @@ new five.Boards(ports).on('ready', function (){
   this.each(function (board){
       for (var i = 0; i < boards[boardIndex].pins.length; i++) {
         var configPin = boards[boardIndex].pins[i];
-        var pinIndex = (typeof(configPin) === 'string') ? analogPinMap(configPin) : configPin;
+        var pinIndex = configPin;
         createPin(board, pinIndex);
       }
 
@@ -35,23 +35,12 @@ function getBoardsPorts(){
 }
 
 function createPin (board, pinIndex){
-  var pin  = new five.Pin({
+  var button = new five.Button({
     pin: pinIndex,
+    // isPullup: true, // right now this doesn't work for analog inputs, we still need to upload a custom firmware
     board: board
+  })
+  button.on('press', function (){
+    console.log('Button ' + pinIndex + ' on board ' + board.id + ' pressed');
   });
-  pin.mode = 0; // 0 = INPUT
-  pin.read(function (value){
-    console.log('Pin ' + pinIndex + ' on board ' + board.id + ': ' + (value ? 'On' : 'Off'));
-    if(value){
-      client.send('/' + board.id + '/' + pinIndex, 'On');
-    }
-  });
-}
-
-// You can't write 'A0', 'A1', etc, and change mode to INPUT. To do so, you'll have to map the analog identifier to digital pin number
-function analogPinMap (pinToParse){
-  var re = /[^0-9]/gi;
-  var intPin = pinToParse.replace(re, '');
-  var mappedPin = parseInt(intPin) + 14; // Analogs pins starts at 14 (the 13 before are digitals)
-  return mappedPin;
 }
