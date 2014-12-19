@@ -33,7 +33,10 @@ function getBoardsPorts(){
 }
 
 function createPin (board, pinIndex){
-  var pin  = new five.Pin(pinIndex);
+  var pin  = new five.Pin({
+    pin: pinIndex,
+    board: board
+  });
   pin.mode = 0; // 0 = INPUT
   pin.read(function (value){
     console.log('Pin ' + pinIndex + ' on board ' + board.id + ': ' + (value ? 'On' : 'Off'));
