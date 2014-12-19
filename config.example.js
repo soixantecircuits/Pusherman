@@ -4,12 +4,14 @@ module.exports = {
     {
       name: "A",
       port: "/dev/ttyACM0"
-      pins: ["A0", 8]
+      pins: ["A0", 8],
+      enable: true
     },
     {
       name: "B",
       port: "/dev/ttyACM1"
-      pins: ["A1", 13]
+      pins: ["A1", 13],
+      enable: true
     }
   ],
   osc: {

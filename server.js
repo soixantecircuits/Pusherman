@@ -23,11 +23,13 @@ new five.Boards(ports).on('ready', function (){
 function getBoardsPorts(){
   var ports = [];
   for (var i = 0; i < boards.length; i++) {
-    port = {
-      id: boards[i].name,
-      port: boards[i].port
+    if(boards[i].enable){
+      port = {
+        id: boards[i].name,
+        port: boards[i].port
+      };
+      ports.push(port);
     }
-    ports.push(port);
   };
   return ports;
 }
