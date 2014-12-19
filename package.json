@@ -1,0 +1,23 @@
+{
+  "name": "arduinOSC",
+  "version": "0.0.1",
+  "description": "Send firmata messages to OSC",
+  "main": "server.js",
+  "dependencies": {
+    "johnny-five": "^0.8.33",
+    "node-osc": "^0.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "arduino",
+    "nodejs",
+    "firmata",
+    "osc"
+  ],
+  "author": "@hugohil",
+  "license": "ISC"
+}
