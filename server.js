@@ -5,7 +5,8 @@ var osc = require('node-osc');
 
 var client = new osc.Client(config.osc.address, config.osc.port);
 
-new five.Boards(getBoardsID()).on('ready', function (){
+var ports = getBoardsPorts();
+new five.Boards(ports).on('ready', function (){
   var boardIndex = 0;
 
   this.each(function (board){
@@ -19,12 +20,16 @@ new five.Boards(getBoardsID()).on('ready', function (){
   });
 });
 
-function getBoardsID(){
-  var ids = [];
+function getBoardsPorts(){
+  var ports = [];
   for (var i = 0; i < boards.length; i++) {
-    ids.push(boards[i].name);
+    port = {
+      id: boards[i].name,
+      port: boards[i].port
+    }
+    ports.push(port);
   };
-  return ids;
+  return ports;
 }
 
 function createPin (board, pinIndex){
