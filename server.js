@@ -41,6 +41,7 @@ function createPin (board, pinIndex){
     board: board
   })
   button.on('press', function (){
+    client.send('/' + board.id + '/' + pinIndex, 'On');
     console.log('Button ' + pinIndex + ' on board ' + board.id + ' pressed');
   });
 }
