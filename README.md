@@ -29,3 +29,10 @@ You'll also need to configure your app by renaming the `config.example.js` file 
 ```
 npm start
 ```
+
+## Example
+
+This repo comes with a front-end basic example. To see it, launch pusherman in a terminal as explain above and, in another terminal window, go to the `example` subfolder in the main pusherman folder and type:
+```
+grunt
+```
