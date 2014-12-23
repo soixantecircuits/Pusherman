@@ -2,7 +2,7 @@
 
 #### Sending messages from a physical interface
 
-This program is intended to send osc messages from a physical button. It sets analog pins to digital inputs, allowing you to cable as many buttons as your board has pins.
+This program is intended to send messages from a physical button. It sets analog pins to digital inputs, allowing you to cable as many buttons as your board has pins.
 
 Right now it supports either OSC or socket.io
 
