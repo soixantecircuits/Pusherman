@@ -11,8 +11,8 @@ Right now it supports either OSC or socket.io
 ### Arduino
 Launch Arduino IDE and open File > Examples > Firmata > StandardFirmata and upload it to your board.
 
-> NOTE: If you want internal pull-ups, you'll have to briefly modify this code.
-Go to line 208 and change `LOW` to `HIGH`. (if you need it for ANALOG pins also, just do the same at line 200)
+> NOTE: If you want internal pull-ups on analogs pins, you'll have to briefly modify this code.
+Go to line 200 and change `LOW` to `HIGH`. (if you need it just for DIGITALS pins, [Johnny-Five can handle it](https://github.com/rwaldron/johnny-five/wiki/Button) )
 
 ### JavaScript
 
@@ -20,7 +20,7 @@ Go to line 208 and change `LOW` to `HIGH`. (if you need it for ANALOG pins also,
 npm install
 ```
 
-This will install [johnny-five](https://github.com/rwaldron/johnny-five/) and [node-osc](https://github.com/TheAlphaNerd/node-osc).
+This will install [johnny-five](https://github.com/rwaldron/johnny-five/),  [node-osc](https://github.com/TheAlphaNerd/node-osc) and [socket.io](http://socket.io).
 
 You'll also need to configure your app by renaming the `config.example.js` file in `config.js` and fill it with your setup.
 
