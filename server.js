@@ -58,11 +58,9 @@ function createPin (board, pinIndex, mode, transporter){
     });
   } else if(mode == 'socketio'){
     var io = transporter;
-    io.on('connection', function (socket) {
-      button.on('press', function (){
-        io.emit('button-pressed', {board: board.id, pin: pinIndex});
-        console.log('Button ' + pinIndex + ' on board ' + board.id + ' pressed');
-      })
-    });
+    button.on('press', function (){
+      io.emit('button-pressed', {board: board.id, pin: pinIndex});
+      console.log('Button ' + pinIndex + ' on board ' + board.id + ' pressed');
+    })
   }
 }
