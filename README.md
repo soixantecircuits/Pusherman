@@ -20,7 +20,7 @@ Go to line 208 and change `LOW` to `HIGH`. (if you need it for ANALOG pins also,
 npm install
 ```
 
-This will install [johnny-five](https://github.com/rwaldron/johnny-five/) and [node-osc](https://github.com/TheAlphaNerd/node-osc).
+This will install [johnny-five](https://github.com/rwaldron/johnny-five/),  [node-osc](https://github.com/TheAlphaNerd/node-osc) and [socket.io](http://socket.io).
 
 You'll also need to configure your app by renaming the `config.example.js` file in `config.js` and fill it with your setup.
 
