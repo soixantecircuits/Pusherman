@@ -17,5 +17,10 @@ module.exports = {
   osc: {
     address: 'localhost',
     port: 1337
-  }
+  },
+  socketio: {
+    address: 'localhost',
+    port: 8080
+  },
+  mode: 'socketio'
 }
