@@ -34,7 +34,7 @@ function getBoardsPorts(){
   for (var i = 0; i < boards.length; i++) {
     if(boards[i].enable){
       port = {
-        id: boards[i].name,
+        id: boards[i].id,
         port: boards[i].port
       };
       ports.push(port);
