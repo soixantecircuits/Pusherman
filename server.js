@@ -2,6 +2,7 @@ var five = require('johnny-five');
 var config = require('./config');
 var boards = config.boards;
 var buttons = getButtonsArray();
+var lastButton;
 
 if(config.mode == 'osc'){
   var osc = require('node-osc');
@@ -16,6 +17,12 @@ function initBoard (mode, transporter){
   var ports = getBoardsPorts();
   new five.Boards(ports).on('ready', function (){
     var boardIndex = 0;
+
+    io.on('connection', function (socket){
+      if(lastButton !== null){
+        socket.emit('init-color', lastButton);
+      }
+    })
 
     this.each(function (board){
         for (var i = 0; i < boards[boardIndex].pins.length; i++) {
@@ -70,6 +77,7 @@ function createPin (board, pinIndex, mode, transporter){
     button.on('press', function (){
       var index = getPinGlobalIndex(pinIndex, +board.id);
       io.emit('button-pressed', index);
+      lastButton = index;
       console.log('Button ' + pinIndex + ' on board ' + board.id + ' pressed');
     })
   }
